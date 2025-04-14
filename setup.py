@@ -13,4 +13,9 @@ setup(
         "openai",
         "requests",
     ],
+    entry_points={
+        "console_scripts": [
+            "ai-task=cli.main:cli",
+        ],
+    },
 )
