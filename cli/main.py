@@ -4,6 +4,7 @@ import click
 from dotenv import load_dotenv
 
 from cli.task_input import get_task_description
+from ai_integration.ai_client import generate_plan
 
 load_dotenv()
 
@@ -28,7 +29,17 @@ def run(task, debug):
         return
     
     click.echo(f"\nProcessing task: {task_description}\n")
-    click.echo("Task execution not yet implemented.")
+    
+    #generate execution plan using AI
+    plan = generate_plan(task_description)
+    
+    if not plan:
+        click.echo("WARNING: Failed to generate a plan. Please try again with a clearer task description.")
+        return
+    
+    click.echo("\n📋 Generated Plan:")
+    for idx, step in enumerate(plan, 1):
+        click.echo(f"  {idx}. {step}")
 
 if __name__ == '__main__':
     cli()

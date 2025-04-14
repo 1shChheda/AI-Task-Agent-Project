@@ -35,7 +35,7 @@ def get_task_description():
             click.echo("WARNING: Task contains potentially dangerous operations and cannot be processed.")
             return None
             
-    # Sanitize input (remove extra whitespace, etc.)
+    #removing extra whitespace, etc.
     task = " ".join(task.split())
     
     return task
