@@ -14,10 +14,10 @@ def generate_plan(task_description: str, previous_attempt: Optional[List[str]] =
     
     #mock plan for testing
     plan = [
-        "echo 'Starting task execution'",
-        "mkdir -p test_output",
-        "echo 'Task completed' > test_output/result.txt",
-        "cat test_output/result.txt"
+        "echo Starting task execution",
+        "mkdir test_output",
+        "echo Vansh's Agent COMPLETED the task! > test_output\\result.txt",
+        "type test_output\\result.txt"
     ]
     
     return plan
