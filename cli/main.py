@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from cli.task_input import get_task_description
 from ai_integration.ai_client import generate_plan
 from executor.command_executor import execute_plan
+from feedback.feedback_loop import handle_feedback
 
 load_dotenv()
 
@@ -52,9 +53,20 @@ def run(task, debug):
     if success:
         click.echo("\nTask completed successfully!")
         click.echo(f"\nOutput:\n{output}")
+        
+        if click.confirm("\nWas the task successful?", default=True):
+            click.echo("Great! Exiting.")
+            return
     else:
         click.echo("\nTask execution failed!")
         click.echo(f"\nError:\n{output}")
+    
+    #NOTE: if we get here, either execution failed or user wasn't satisfied
+    feedback = handle_feedback(task_description, plan, output)
+    
+    #TO-DO: dummy feedback-based retry (to be implemented)
+    click.echo(f"\nReceived feedback: {feedback}")
+    click.echo("Refining plan based on feedback (not yet implemented)")
 
 if __name__ == '__main__':
     cli()
