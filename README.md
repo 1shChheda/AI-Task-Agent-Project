@@ -14,14 +14,14 @@ An AI-powered command line tool that helps you execute tasks on your local machi
 ### Prerequisites
 
 - Python 3.7+
-- OpenAI API key
+- Groq API key or HuggingFace Inference API key
 
 ### Setup
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/ai-task-agent.git
-   cd ai-task-agent
+   git clone https://github.com/1shChheda/AI-Task-Agent-Project.git
+   cd AI-Task-Agent-Project
    ```
 
 2. Create a virtual environment and activate it:
@@ -47,7 +47,8 @@ An AI-powered command line tool that helps you execute tasks on your local machi
    
    Then edit the `.env` file with your API keys:
    ```
-   OPENAI_API_KEY=your_api_key_here
+   GROQ_API_KEY=your_api_key_here
+   HUGGINGFACE_API_TOKEN=your_api_key_here
    ```
 
 ## Usage
@@ -67,7 +68,7 @@ ai-task
 Provide a task directly:
 
 ```bash
-ai-task run --task "Create a simple Python web server and run it"
+ai-task run --task "Create a simple calculator program in Python"
 ```
 
 ### Debug Mode
@@ -82,7 +83,6 @@ ai-task run --debug --task "Find all .txt files in the current directory"
 
 Here are some example tasks you can try:
 
-- "Create a simple Python web server and run it"
 - "Generate a React component for a contact form"
 - "Find and list all .txt files in the current directory"
 - "Create a simple calculator program in Python"
