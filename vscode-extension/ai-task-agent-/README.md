@@ -1,71 +1,156 @@
-# ai-task-agent- README
+# AI Task Agent - VSCode Extension
 
-This is the README for your extension "ai-task-agent-". After writing up a brief description, we recommend including the following sections.
+The AI Task Agent is a VSCode extension that automates tasks on your computer using AI. Simply describe a task, and the extension will generate a plan of commands to execute, show you the plan for approval, and then execute it upon confirmation. If a task fails, the agent will collect feedback and refine the plan for another attempt.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- 🤖 AI-generated task execution plans
+- 👁️ Preview and approve plans before execution
+- 📝 File creation and editing
+- 🖥️ Command execution in the workspace
+- 🔄 Feedback and refinement loop for failed tasks
+- 🔧 Support for multiple AI providers (Groq, HuggingFace)
 
-For example if there is an image subfolder under your extension project workspace:
+## Prerequisites
 
-\!\[feature X\]\(images/feature-x.png\)
+- VS Code version 1.74.0 or higher
+- Node.js and npm installed
+- Groq API key or HuggingFace API token (free tier)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## Installation
 
-## Requirements
+### Development Setup
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/1shChheda/AI-Task-Agent-Project.git
+   cd AI-Task-Agent-Project/vscode-extension/ai-task-agent-
+   ```
 
-## Extension Settings
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+3. Build the extension:
+   ```bash
+   npm run compile
+   ```
 
-For example:
+4. Launch the extension in development mode:
+   - Press `F5` in VS Code (or click on "Run & Debug" -> "Run Extension") to start a debugging session
+   - Alternatively, run from terminal:
+     ```bash
+     code --extensionDevelopmentPath=/path/to/AI-Task-Agent-Project/vscode-extension/ai-task-agent-
+     ```
 
-This extension contributes the following settings:
+### Installing the Extension Locally
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+1. Package the extension:
+   ```bash
+   npm install -g @vscode/vsce
+   vsce package
+   ```
 
-## Known Issues
+2. Install the generated .vsix file:
+   - Open VS Code
+   - Go to Extensions view (Ctrl+Shift+X)
+   - Click on the "..." menu (top-right)
+   - Select "Install from VSIX..."
+   - Browse to the generated .vsix file
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+## Configuration
 
-## Release Notes
+Before using the extension, you need to configure your AI provider settings:
 
-Users appreciate release notes as you update your extension.
+1. Open VS Code settings (Ctrl+,)
+2. Search for "AI Task Agent"
+3. Configure the following settings:
 
-### 1.0.0
+| Setting | Description | Default |
+|---------|-------------|---------|
+| `aiTaskAgent.provider` | AI provider to use | `groq` |
+| `aiTaskAgent.groqApiKey` | Your Groq API key | `""` |
+| `aiTaskAgent.huggingfaceApiToken` | Your HuggingFace API token | `""` |
+| `aiTaskAgent.model` | Model to use | `llama3-8b-8192` |
+| `aiTaskAgent.debugMode` | Enable verbose output | `false` |
+| `aiTaskAgent.maxRetries` | Maximum retry attempts | `3` |
 
-Initial release of ...
+### Getting API Keys
 
-### 1.0.1
+- **Groq**: Sign up for a free account at [groq.com](https://console.groq.com/keys) to get your API key
+- **HuggingFace**: Create a free account at [huggingface.co](https://huggingface.co/settings/tokens) to get your API token
 
-Fixed issue #.
+## Usage
 
-### 1.1.0
+Currently, the extension's sidebar view is under development. You can use the extension through the Command Palette:
 
-Added features X, Y, and Z.
+1. Open Command Palette (Ctrl+Shift+P)
+2. Type and select "Run AI Task"
+3. Enter your task description (e.g., "Create a React component that displays a counter")
+4. Review the generated plan in the output channel
+5. Approve the plan when prompted
+6. Monitor execution in the output channel
+7. Provide feedback if the task fails
 
----
+### Available Commands
 
-## Following extension guidelines
+- `AI Task Agent: Run Task` - Start a new task
+- `AI Task Agent: Execute Task` - Execute the current plan
+- `AI Task Agent: Cancel Task` - Cancel the current task
+- `AI Task Agent: Provide Feedback` - Provide feedback on the current task
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+### Output Channel
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+The extension displays detailed information in the "AI Task Agent" output channel, which you can view by:
 
-## Working with Markdown
+1. Open the Output panel (Ctrl+Shift+U)
+2. Select "AI Task Agent" from the dropdown menu
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+## Task Execution Flow
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+1. **Task Description**: Enter a natural language description of what you want to accomplish
+2. **Plan Generation**: The AI generates a step-by-step plan
+3. **Plan Review**: Review and approve/reject the proposed plan
+4. **Execution**: The extension executes the approved plan
+5. **Feedback**: Indicate if the task was successful or provide feedback to refine the plan
 
-## For more information
+## Examples
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+Here are some example tasks you can try:
 
-**Enjoy!**
+- "Create a React component that displays a counter"
+- "Initialize a new npm project with Express"
+- "Create a basic HTML page with CSS styling"
+
+## Troubleshooting
+
+### Extension not showing in sidebar
+
+The sidebar view is currently under development. Use the Command Palette (Ctrl+Shift+P) to access all commands.
+
+### API connection issues
+
+- Verify your API key is correctly entered in settings
+- Check your internet connection
+- Ensure the API service is operational
+
+### Command execution failures
+
+- Make sure your workspace has the necessary environment (e.g., Python installed for Python scripts)
+- Check the output channel for detailed error messages
+- For permission issues, try simplifying the task or running VS Code with elevated permissions
+
+## Security Notes
+
+The extension includes safety checks to prevent harmful commands from executing. However, always review the plan carefully before approving execution.
+
+## Limitations
+
+- Limited to tasks that can be accomplished with command-line operations
+- Complex multi-step workflows might require refinement
+- Depends on the capabilities of the selected AI model
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.

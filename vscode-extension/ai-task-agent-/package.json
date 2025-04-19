@@ -9,7 +9,9 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onView:aiTaskAgentView"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
@@ -89,9 +91,10 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
+    "vscode:prepublish": "npm run esbuild-base -- --production",
+    "esbuild-base": "node ./esbuild.js",
+    "compile": "node ./esbuild.js",
+    "watch": "node ./esbuild.js --watch",
     "watch:tsc": "tsc -watch -p ./",
     "watch:esbuild": "node ./esbuild.js --watch",
     "pretest": "npm run compile",
