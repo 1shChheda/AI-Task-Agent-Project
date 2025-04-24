@@ -9,6 +9,12 @@ An AI-powered command line tool that helps you execute tasks on your local machi
 - Execute commands safely on your local machine
 - Interactive feedback loop to refine tasks if needed
 
+## 📽️ Demo Video
+
+[![Watch the demo](media/thumbnail.png)](https://drive.google.com/file/d/1OjmfcM7dt4UvEsorbhlOEvA-rdGR0o0Z/view?usp=sharing)
+
+> **Click the image above** to watch a full walkthrough of the AI Task Agent in action, showcasing the full project flow, usage examples, and the VSCode extension.
+
 ## Installation
 
 ### Prerequisites
@@ -90,11 +96,14 @@ Here are some example tasks you can try:
 ## Project Structure
 
 ```
-/ai-task-agent
-├── /cli                      #CLI components
-├── /ai_integration           #AI API client and response parsing
-├── /executor                 #Command execution and file operations
-├── /feedback                 #User feedback and refinement logic
-├── requirements.txt          #Python dependencies
-└── .env                      #Environment variables (API keys)
+/AI-Task-Agent-Project
+├── ai_integration/          #AI API clients (Groq, HuggingFace) and response parsing
+├── cli/                     #CLI logic and entrypoint
+├── executor/                #Local command execution and file creation
+├── feedback/                #User feedback and refinement handling
+├── vscode-extension/        #VS Code extension source and resources
+├── media/                   #Media assets (e.g., demo thumbnails)
+├── requirements.txt         #Python dependencies
+├── setup.py                 #Package setup
+└── .env.template            #Sample environment config
 ```
